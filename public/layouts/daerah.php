@@ -17,7 +17,7 @@
                     <?php } ?>
                 </div>
             </div>
-        </div><a class="link-classic wow fadeInUp" href="#">LIHAT LAINNYA<span></span></a>
+        </div><a class="link-classic wow fadeInUp" href="daerah.php">LIHAT LAINNYA<span></span></a>
         <!-- Owl Carousel-->
     </div>
 </section>

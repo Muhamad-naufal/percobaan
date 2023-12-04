@@ -1,0 +1,62 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Arial", sans-serif;
+}
+
+.container {
+	background-image: url("public/assets/images/back.png"); /* Ganti dengan path foto pemandangan Anda */
+	background-size: cover !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.login-form {
+	background: rgba(255, 255, 255, 0.8);
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	text-align: center;
+}
+
+.login-form h2 {
+	margin-bottom: 20px;
+	color: #333;
+}
+
+label {
+	display: block;
+	margin-bottom: 8px;
+}
+
+input {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 16px;
+	box-sizing: border-box;
+}
+
+button {
+	background-color: #4caf50;
+	color: white;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+.register-link {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.register-link a {
+	color: #007bff;
+	text-decoration: none;
+}
+/* Add your styles for comments section */

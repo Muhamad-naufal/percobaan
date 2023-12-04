@@ -1,3 +1,17 @@
+<?php
+session_start();
+include "public/config/connection.php"
+?>
+
+<?php
+require_once 'util.php';
+
+// Cek apakah pengguna sudah login
+if (!isUserLoggedIn()) {
+    redirectToLoginPage();
+}
+?>
+
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 
@@ -36,6 +50,18 @@
                                     <li class="rd-nav-item"><a class="rd-nav-link" href="kategori.php">Kategori</a>
                                     </li>
                                     <li class="rd-nav-item active"><a class="rd-nav-link" href="daerah.php">Daerah</a>
+                                    </li>
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['username'])) { ?>
+                                        <li class="dropdown rd-nav-item">
+                                            <a href="#" class="dropdown-toggle rd-nav-link" data-toggle="dropdown"><?php echo $_SESSION['username'] ?><b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="logout.php">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    <?php }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -48,10 +74,10 @@
         <section class="breadcrumbs-custom-inset">
             <div class="breadcrumbs-custom context-dark bg-overlay-60">
                 <div class="container">
-                    <h2 class="breadcrumbs-custom-title">Kategori</h2>
+                    <h2 class="breadcrumbs-custom-title">Daerah</h2>
                     <ul class="breadcrumbs-custom-path">
                         <li><a href="index.php">Home</a></li>
-                        <li class="active">Kategori</li>
+                        <li class="active">Daerah</li>
                     </ul>
                 </div>
                 <div class="box-position" style="background-image: url(public/assets/images/slamet.jpg);"></div>

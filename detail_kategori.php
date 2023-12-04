@@ -1,3 +1,17 @@
+<?php
+session_start();
+include "public/config/connection.php"
+?>
+
+<?php
+require_once 'util.php';
+
+// Cek apakah pengguna sudah login
+if (!isUserLoggedIn()) {
+    redirectToLoginPage();
+}
+?>
+
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 
@@ -36,6 +50,18 @@
                                     <li class="rd-nav-item active"><a class="rd-nav-link" href="kategori.php">Kategori</a>
                                     </li>
                                     <li class="rd-nav-item"><a class="rd-nav-link" href="daerah.php">Daerah</a>
+                                    </li>
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['username'])) { ?>
+                                        <li class="dropdown rd-nav-item">
+                                            <a href="#" class="dropdown-toggle rd-nav-link" data-toggle="dropdown"><?php echo $_SESSION['username'] ?><b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="logout.php">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    <?php }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -72,7 +98,7 @@
                         <div class="col-sm-6 col-md-5 col-lg-3">
                             <!-- Team Modern-->
                             <article class="team-modern">
-                                <div class="team-modern-header"><a class="team-modern-figure" href="#"><img class="img-circles" src="admin/pages/travel/<?php echo $data2['gambar'] ?>" alt="" style="max-width: 118px !important; height:118px !important" /></a>
+                                <div class="team-modern-header"><a class="team-modern-figure" href="detail_destinasi.php?id=<?php echo $data2['id'] ?>"><img class="img-circles" src="admin/pages/travel/<?php echo $data2['gambar'] ?>" alt="" style="max-width: 118px !important; height:118px !important" /></a>
                                     <svg x=" 0px" y="0px" width="270px" height="70px" viewbox="0 0 270 70" enable-background="new 0 0 270 70" xml:space="preserve">
                                         <g>
                                             <path fill="#161616" d="M202.085,0C193.477,28.912,166.708,50,135,50S76.523,28.912,67.915,0H0v70h270V0H202.085z"></path>
@@ -80,7 +106,7 @@
                                     </svg>
                                 </div>
                                 <div class="team-modern-caption">
-                                    <h6 class="team-modern-name"><a href="#"><?php echo $data2['nama_tempat'] ?></a></h6>
+                                    <h6 class="team-modern-name"><a href="detail_destinasi.php?id=<?php echo $data2['id'] ?>"><?php echo $data2['nama_tempat'] ?></a></h6>
                                 </div>
                             </article>
                         </div>

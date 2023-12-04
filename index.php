@@ -1,7 +1,25 @@
 <?php
-include "public/config/connection.php"
+session_start();
+include "public/config/connection.php";
+// Check for success message
+if (isset($_SESSION['success_message'])) {
+  echo '<script>alert("' . $_SESSION['success_message'] . '")</script>';
+}
+
+// Check for error message
+if (isset($_SESSION['error_message'])) {
+  echo '<script>alert("' . $_SESSION['error_message'] . '"); window.location.href = "registrasi.php";</script>';
+}
 ?>
 
+<?php
+require_once 'util.php';
+
+// Cek apakah pengguna sudah login
+if (!isUserLoggedIn()) {
+  redirectToLoginPage();
+}
+?>
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 
@@ -36,6 +54,7 @@ include "public/config/connection.php"
                   <li><a class="icon fa fa-google-plus" href="#"></a></li>
                   <li><a class="icon fa fa-instagram" href="#"></a></li>
                 </ul>
+
                 <!-- RD Navbar Nav-->
                 <ul class="rd-navbar-nav">
                   <li class="rd-nav-item active"><a class="rd-nav-link" href="index.php">Home</a>
@@ -46,6 +65,17 @@ include "public/config/connection.php"
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="daerah.php">Daerah</a>
                   </li>
+                  <?php
+                  // Check if the user is logged in
+                  if (isset($_SESSION['username'])) { ?>
+                    <li class="dropdown rd-nav-item">
+                      <a href="#" class="dropdown-toggle rd-nav-link" data-toggle="dropdown"><?php echo $_SESSION['username'] ?><b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="logout.php">Logout</a></li>
+                      </ul>
+                    </li>
+                  <?php }
+                  ?>
                 </ul>
               </div>
             </div>
@@ -92,7 +122,7 @@ include "public/config/connection.php"
                     <div class="product-big-body">
                       <h5 class="product-big-title"><a href="#"><?php echo $data1['nama_tempat'] ?>, Jawa Barat</a></h5>
                       <p class="product-big-text"><?php echo htmlspecialchars($limitedWords) ?>....</p>
-                      <a class="button button-black-outline button-ujarak" href="#">Detail Destinasi</a>
+                      <a class="button button-black-outline button-ujarak" href="detail_destinasi.php?id=<?php echo $data1['id'] ?>">Detail Destinasi</a>
                       <div class="product-big-price-wrap"><span class="product-big-price"><?php echo 'Rp ' . number_format($data1['price'], 0, ',', '.') ?>
                         </span></div>
                     </div>

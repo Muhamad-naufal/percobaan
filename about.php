@@ -1,3 +1,17 @@
+<?php
+session_start();
+include "public/config/connection.php"
+?>
+
+<?php
+require_once 'util.php';
+
+// Cek apakah pengguna sudah login
+if (!isUserLoggedIn()) {
+  redirectToLoginPage();
+}
+?>
+
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 
@@ -36,6 +50,18 @@
                   <li class="rd-nav-item"><a class="rd-nav-link" href="kategori.php">Kategori</a>
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="daerah.php">Daerah</a>
+                  </li>
+                  <?php
+                  // Check if the user is logged in
+                  if (isset($_SESSION['username'])) { ?>
+                    <li class="dropdown rd-nav-item">
+                      <a href="#" class="dropdown-toggle rd-nav-link" data-toggle="dropdown"><?php echo $_SESSION['username'] ?><b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="logout.php">Logout</a></li>
+                      </ul>
+                    </li>
+                  <?php }
+                  ?>
                 </ul>
               </div>
             </div>
